@@ -18,5 +18,26 @@
       </div>
     </div>
 
+    <input type="search" id="search" class="field" placeholder="Search your words…" autocomplete="off" />
+    <input type="text" id="manual-word" class="field" placeholder="Or type a word and press Enter" autocomplete="off" />
+  </header>
+
+  <main id="list" class="list"></main>
+
+  <div id="empty-state" class="empty-state" hidden>
+    <p class="empty-title">No words yet</p>
+    <p class="empty-hint">Select a word on any page, right-click, and choose <strong>“Save to WordNest.”</strong></p>
+  </div>
+
+  <footer class="app-footer">
+    <button id="export-json" class="link-btn" type="button">Export JSON</button>
+    <span class="dot">·</span>
+    <button id="export-csv" class="link-btn" type="button">Export CSV</button>
+    <span class="dot">·</span>
+    <button id="clear-all" class="link-btn danger" type="button">Clear all</button>
+  </footer>
+
+</div>
+<script src="popup.js"></script>
 </body>
 </html>
