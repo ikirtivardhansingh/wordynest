@@ -177,6 +177,33 @@ async function deleteEntry(id) {
 }
 
 
+async function requestLookup(id, buttonEl) {
+  buttonEl.textContent = "Looking up…";
+  buttonEl.disabled = true;
+  try {
+    const res = await chrome.runtime.sendMessage({ type: "REFRESH_DEFINITION", id });
+    if (!res?.updated) {
+      buttonEl.textContent = "Still not found";
+      buttonEl.disabled = false;
+    }
+    // if updated, storage.onChanged re-renders this entry automatically
+  } catch (err) {
+    buttonEl.textContent = "Look up";
+    buttonEl.disabled = false;
+  }
+}
+
+async function onNoteBlur(e) {
+  if (!e.target.classList.contains("note-input")) return;
+  const id = e.target.dataset.id;
+  const value = e.target.value;
+  const idx = allWords.findIndex((w) => w.id === id);
+  if (idx !== -1 && allWords[idx].note !== value) {
+    allWords[idx].note = value;
+    await setWords(allWords);
+  }
+}
+
 
 
 
