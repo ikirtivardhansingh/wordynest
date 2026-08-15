@@ -143,3 +143,40 @@ function renderEntry(entry) {
     </div>
   `;
 }
+
+
+
+function onListClick(e) {
+  const actionEl = e.target.closest("[data-action]");
+  if (!actionEl) return;
+  const action = actionEl.dataset.action;
+
+  if (action === "stop") return;
+
+  if (action === "toggle") {
+    const id = actionEl.closest(".entry").dataset.id;
+    expandedId = expandedId === id ? null : id;
+    render();
+    return;
+  }
+
+  if (action === "delete") {
+    deleteEntry(actionEl.dataset.id);
+    return;
+  }
+
+  if (action === "lookup") {
+    requestLookup(actionEl.dataset.id, actionEl);
+    return;
+  }
+}
+
+async function deleteEntry(id) {
+  allWords = allWords.filter((w) => w.id !== id);
+  await setWords(allWords);
+}
+
+
+
+
+
