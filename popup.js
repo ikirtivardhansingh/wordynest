@@ -233,3 +233,51 @@ async function handleManualAdd(e) {
 }
 
 
+function flashPlaceholder(text) {
+  const original = manualInputEl.placeholder;
+  manualInputEl.placeholder = text;
+  setTimeout(() => {
+    manualInputEl.placeholder = original;
+  }, 1800);
+}
+
+async function onClearAll() {
+  if (allWords.length === 0) return;
+  const ok = confirm("Delete all saved words? This can’t be undone.");
+  if (!ok) return;
+  allWords = [];
+  await setWords(allWords);
+}
+
+function exportWords(format) {
+  if (allWords.length === 0) return;
+  let blob, filename;
+
+  if (format === "json") {
+    blob = new Blob([JSON.stringify(allWords, null, 2)], { type: "application/json" });
+    filename = "wordnest-export.json";
+  } else {
+    const header = ["word", "partOfSpeech", "definition", "example", "note", "source", "dateAdded"];
+    const rows = allWords.map((w) => [
+      w.word,
+      w.partOfSpeech || "",
+      w.definition || "",
+      w.example || "",
+      w.note || "",
+      w.sourceUrl || "",
+      new Date(w.createdAt).toISOString()
+    ]);
+    const csv = [header, ...rows].map((r) => r.map(csvEscape).join(",")).join("\n");
+    blob = new Blob([csv], { type: "text/csv" });
+    filename = "wordnest-export.csv";
+  }
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+
