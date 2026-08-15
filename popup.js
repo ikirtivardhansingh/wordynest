@@ -20,3 +20,31 @@ const POS_ABBREVIATIONS = {
   determiner: "det.",
   article: "art."
 };
+
+let allWords = [];
+let expandedId = null;
+
+init();
+
+async function init() {
+  allWords = await getWords();
+  render();
+
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === "local" && changes.words) {
+      allWords = changes.words.newValue || [];
+      render();
+    }
+  });
+
+  searchEl.addEventListener("input", render);
+  manualInputEl.addEventListener("keydown", handleManualAdd);
+
+  listEl.addEventListener("click", onListClick);
+  listEl.addEventListener("focusout", onNoteBlur);
+  listEl.addEventListener("keydown", onListKeydown);
+
+  exportJsonBtn.addEventListener("click", () => exportWords("json"));
+  exportCsvBtn.addEventListener("click", () => exportWords("csv"));
+  clearAllBtn.addEventListener("click", onClearAll);
+}
