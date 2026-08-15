@@ -206,4 +206,30 @@ async function onNoteBlur(e) {
 
 
 
+function onListKeydown(e) {
+  if (e.target.classList.contains("note-input") && e.key === "Enter") {
+    e.target.blur();
+  }
+}
+
+async function handleManualAdd(e) {
+  if (e.key !== "Enter") return;
+  const word = manualInputEl.value.trim();
+  if (!word) return;
+
+  manualInputEl.value = "";
+  manualInputEl.disabled = true;
+  try {
+    const res = await chrome.runtime.sendMessage({ type: "ADD_WORD_MANUAL", word });
+    if (!res?.added && res?.reason === "duplicate") {
+      flashPlaceholder(`“${word}” is already saved`);
+    }
+  } catch (err) {
+    console.error("WordNest: failed to add word", err);
+  } finally {
+    manualInputEl.disabled = false;
+    manualInputEl.focus();
+  }
+}
+
 
