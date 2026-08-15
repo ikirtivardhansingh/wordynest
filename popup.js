@@ -48,3 +48,26 @@ async function init() {
   exportCsvBtn.addEventListener("click", () => exportWords("csv"));
   clearAllBtn.addEventListener("click", onClearAll);
 }
+
+async function getWords() {
+  const { words = [] } = await chrome.storage.local.get("words");
+  return words;
+}
+
+async function setWords(words) {
+  await chrome.storage.local.set({ words });
+}
+
+function getFiltered() {
+  const q = searchEl.value.trim().toLowerCase();
+  if (!q) return allWords;
+  return allWords.filter(
+    (w) =>
+      w.word.toLowerCase().includes(q) ||
+      (w.definition || "").toLowerCase().includes(q) ||
+      (w.note || "").toLowerCase().includes(q)
+  );
+}
+
+
+
