@@ -76,6 +76,19 @@ async function refreshBadge(wordsMaybe) {
   chrome.action.setBadgeBackgroundColor({ color: "#6E5E28" });
 }
 
+async function addEntryToStorage({ word, sourceTitle, sourceUrl }) {
+  const clean = (word || "").trim();
+  if (!clean) return { added: false, reason: "empty" };
+
+  const { words = [], catalogCounter = 0 } = await chrome.storage.local.get([
+    "words",
+    "catalogCounter"
+  ]);
+
+  const isDuplicate = words.some((w) => w.word.toLowerCase() === clean.toLowerCase());
+  if (isDuplicate) return { added: false, reason: "duplicate" };
+
+  const nextNo = catalogCounter + 1;
 
 
 
