@@ -26,3 +26,24 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     sourceTitle: tab?.title || "",
     sourceUrl: info.pageUrl || tab?.url || ""
   });
+
+  
+
+
+  const message = result.added
+    ? `Saved "${word}" to WordNest`
+    : result.reason === "duplicate"
+    ? `"${word}" is already in WordNest`
+    : null;
+
+  if (message && tab?.id) {
+    chrome.scripting
+      .executeScript({
+        target: { tabId: tab.id },
+        func: showPageToast,
+        args: [message]
+      })
+      .catch(() => {
+            });
+  }
+});
