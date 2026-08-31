@@ -113,7 +113,24 @@ async function addEntryToStorage({ word, sourceTitle, sourceUrl }) {
     }
   }
 
+ words.unshift(entry);
+  await chrome.storage.local.set({ words, catalogCounter: nextNo });
+  return { added: true, entry };
+}
 
+async function refreshDefinitionFor(id) {
+  const { words = [] } = await chrome.storage.local.get("words");
+  const idx = words.findIndex((w) => w.id === id);
+  if (idx === -1) return { updated: false };
+
+  try {
+    const def = await fetchDefinition(words[idx].word);
+    if (def) {
+      words[idx] = { ...words[idx], ...def };
+      await chrome.storage.local.set({ words });
+      return { updated: true };
+    }
+  } catch (e) {
 
 
 
