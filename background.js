@@ -150,6 +150,18 @@ async function fetchDefinition(word) {
   if (!first) return null;
 
 
+  const phonetic = first.phonetic || first.phonetics?.find((p) => p.text)?.text || null;
+  const meaning = first.meanings?.[0];
+  const def = meaning?.definitions?.[0];
+
+  return {
+    phonetic,
+    partOfSpeech: meaning?.partOfSpeech || null,
+    definition: def?.definition || null,
+    example: def?.example || null
+  };
+}
+
 
 
 
