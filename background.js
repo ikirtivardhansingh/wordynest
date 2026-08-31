@@ -161,6 +161,51 @@ async function fetchDefinition(word) {
     example: def?.example || null
   };
 }
+function showPageToast(text) {
+  let toast = document.getElementById("__wordnest_toast__");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "__wordnest_toast__";
+    document.documentElement.appendChild(toast);
+  }
+
+  const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+
+  toast.textContent = text;
+  Object.assign(toast.style, {
+    position: "fixed",
+    bottom: "24px",
+    right: "24px",
+    zIndex: "2147483647",
+    background: "#2B2418",
+    color: "#EFE9D6",
+    padding: "10px 16px",
+    borderRadius: "6px",
+    fontSize: "13.5px",
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.28)",
+    opacity: reduceMotion ? "1" : "0",
+    transform: reduceMotion ? "none" : "translateY(10px)",
+    transition: reduceMotion ? "none" : "opacity 0.18s ease, transform 0.18s ease",
+    pointerEvents: "none",
+    maxWidth: "300px"
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
