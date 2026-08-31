@@ -91,6 +91,27 @@ async function addEntryToStorage({ word, sourceTitle, sourceUrl }) {
   const nextNo = catalogCounter + 1;
 
 
+  const entry = {
+    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    catalogNo: nextNo,
+    word: clean,
+    definition: null,
+    partOfSpeech: null,
+    phonetic: null,
+    example: null,
+    note: "",
+    sourceTitle,
+    sourceUrl,
+    createdAt: Date.now()
+  };
+
+  if (isLookupable(clean)) {
+    try {
+      const def = await fetchDefinition(clean);
+      if (def) Object.assign(entry, def);
+    } catch (e) {
+    }
+  }
 
 
 
