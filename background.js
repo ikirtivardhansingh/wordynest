@@ -47,3 +47,32 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
             });
   }
 });
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message?.type === "ADD_WORD_MANUAL") {
+    addEntryToStorage({
+      word: message.word,
+      sourceTitle: "Added manually",
+      sourceUrl: ""
+    }).then(sendResponse);
+    return true; // keep the message channel open for the async response
+  }
+
+  if (message?.type === "REFRESH_DEFINITION") {
+    refreshDefinitionFor(message.id).then(sendResponse);
+    return true;
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
