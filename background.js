@@ -193,20 +193,17 @@ function showPageToast(text) {
   });
 
 
+  if (!reduceMotion) {
+    requestAnimationFrame(() => {
+      toast.style.opacity = "1";
+      toast.style.transform = "translateY(0)";
+    });
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  clearTimeout(window.__wordnest_toast_timer__);
+  window.__wordnest_toast_timer__ = setTimeout(() => {
+    toast.style.opacity = "0";
+    if (!reduceMotion) toast.style.transform = "translateY(10px)";
+  }, 2000);
+}
 
