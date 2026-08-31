@@ -132,6 +132,22 @@ async function refreshDefinitionFor(id) {
     }
   } catch (e) {
 
+ }
+  return { updated: false };
+}
+
+function isLookupable(text) {
+  return /^[A-Za-z][A-Za-z'-]*$/.test(text) && text.length <= 45;
+}
+
+async function fetchDefinition(word) {
+  const res = await fetch(
+    `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word.toLowerCase())}`
+  );
+  if (!res.ok) return null;
+  const data = await res.json();
+  const first = Array.isArray(data) ? data[0] : null;
+  if (!first) return null;
 
 
 
