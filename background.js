@@ -64,7 +64,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "local" && changes.words) {
+    refreshBadge(changes.words.newValue || []);
+  }
+});
 
+async function refreshBadge(wordsMaybe) {
+  const words = wordsMaybe || (await chrome.storage.local.get("words")).words || [];
+  chrome.action.setBadgeText({ text: words.length ? String(words.length) : "" });
+  chrome.action.setBadgeBackgroundColor({ color: "#6E5E28" });
+}
 
 
 
