@@ -112,6 +112,21 @@ body {
 .entry-main { flex: 1; min-width: 0; }
 
 
+.catalog-no {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--brass);
+  letter-spacing: 0.4px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.entry-headline {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 
 
 
