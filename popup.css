@@ -156,6 +156,23 @@ body {
   overflow: hidden;
 }
 
+.entry.expanded .definition { -webkit-line-clamp: unset; }
+
+.definition.muted { color: var(--ink-faint); font-style: italic; }
+
+.lookup-btn {
+  margin-left: 4px;
+  border: none;
+  background: none;
+  color: var(--brass);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-ui);
+}
+
 
 
 
