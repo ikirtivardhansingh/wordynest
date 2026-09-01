@@ -189,6 +189,16 @@ body {
 
 
 
+.source { color: var(--ink-faint); text-decoration: none; }
+.source:hover { color: var(--brass); text-decoration: underline; }
+
+.entry-details {
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px dashed var(--rule);
+}
+
+
 
 
 
