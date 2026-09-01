@@ -63,6 +63,27 @@ body {
 
 
 
+.field {
+  width: 100%;
+  border: 1px solid var(--rule);
+  background: var(--card);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  color: var(--ink);
+  margin-top: 8px;
+}
+
+.field:first-of-type { margin-top: 0; }
+
+.field:focus {
+  outline: none;
+  border-color: var(--brass);
+  box-shadow: 0 0 0 2px var(--brass-soft);
+}
+
+
 
 
 
