@@ -206,5 +206,21 @@ body {
 }
 
 
+.example {
+  margin: 0 0 8px;
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--ink-faint);
+  font-family: var(--font-serif);
+}
+
+
+
+
+
+
+
+
+
 
 
