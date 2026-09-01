@@ -130,6 +130,19 @@ body {
 
 
 
+.word {
+  font-family: var(--font-serif);
+  font-size: 16.5px;
+  font-weight: 700;
+}
+
+.pos {
+  font-family: var(--font-mono);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--brass);
+}
+
 
 
 
