@@ -297,6 +297,14 @@ body {
   padding: 2px;
 }
 
+.link-btn:hover { color: var(--brass); text-decoration: underline; }
+.link-btn.danger:hover { color: var(--stamp); }
+
+.dot { color: var(--rule); margin: 0 6px; font-size: 11px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .delete-btn { transition: none; }
+}
 
 
 
