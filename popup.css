@@ -249,6 +249,22 @@ body {
 }
 
 
+.entry:hover .delete-btn { opacity: 1; }
+.delete-btn:hover { background: var(--stamp-soft); color: var(--stamp); }
+
+.delete-btn:focus-visible,
+.lookup-btn:focus-visible,
+.link-btn:focus-visible,
+.source:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+.no-results { color: var(--ink-faint); font-size: 13px; padding: 24px 8px; text-align: center; }
+
+.empty-state { padding: 40px 24px; text-align: center; }
+
+
 
 
 
