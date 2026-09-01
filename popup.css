@@ -1,0 +1,15 @@
+:root {
+  --paper: #EFE9D6;
+  --card: #F8F4E6;
+  --ink: #2B2418;
+  --ink-faint: #8B8168;
+  --brass: #6E5E28;
+  --brass-soft: #E4DCC0;
+  --stamp: #A13A2C;
+  --stamp-soft: #F3DFDA;
+  --rule: #D8CFAE;
+
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Courier New", monospace;
+}
