@@ -97,6 +97,21 @@ body {
 
 
 
+.entry {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 10px 10px 9px;
+  cursor: pointer;
+  box-shadow: 0 1px 0 var(--rule);
+}
+
+.entry-main { flex: 1; min-width: 0; }
+
+
 
 
 
